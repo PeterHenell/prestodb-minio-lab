@@ -14,6 +14,8 @@ services:
       - './presto/catalogs/minio.properties:/usr/lib/presto/etc/catalog/minio.properties'
     depends_on: 
       - minio
+    links: 
+      - minio
   hadoop:
     hostname: hadoop-master
     image: 'prestodb/cdh5.13-hive:latest'
