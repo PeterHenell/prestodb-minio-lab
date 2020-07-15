@@ -1,0 +1,10 @@
+kompose convert
+←[36mINFO←[0m Kubernetes file "jupyter-service.yaml" created
+←[36mINFO←[0m Kubernetes file "minio-service.yaml" created
+←[36mINFO←[0m Kubernetes file "presto-service.yaml" created
+←[36mINFO←[0m Kubernetes file "hadoop-deployment.yaml" created
+←[36mINFO←[0m Kubernetes file "jupyter-deployment.yaml" created
+←[36mINFO←[0m Kubernetes file "minio-deployment.yaml" created
+←[36mINFO←[0m Kubernetes file "presto-deployment.yaml" created
+
+kubectl apply -f jupyter-deployment.yaml,minio-service.yaml,presto-service.yaml,hadoop-deployment.yaml,jupyter-deployment.yaml,minio-deployment.yaml,presto-deployment.yaml
