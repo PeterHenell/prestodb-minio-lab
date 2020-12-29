@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: hadoop
+  name: hadoop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: hadoop
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: hadoop
+    spec:
+      containers:
+      - image: prestodb/cdh5.13-hive:latest
+        imagePullPolicy: ""
+        name: hadoop-master
+        resources: {}
+      hostname: hadoop-master
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

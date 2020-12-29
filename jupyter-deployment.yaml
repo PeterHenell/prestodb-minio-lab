@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: jupyter
+  name: jupyter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: jupyter
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: jupyter
+    spec:
+      containers:
+      - args:
+        - start-notebook.sh
+        - --NotebookApp.password=sha1:2017f6d8a65d:4f2115202d4cd8c081f1c135bc2b41292bcb4ec4
+        image: jupyter
+        imagePullPolicy: ""
+        name: jupyter
+        ports:
+        - containerPort: 8888
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
