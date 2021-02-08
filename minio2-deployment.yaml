@@ -17,10 +17,12 @@ spec:
       containers:
       - args:
         - server
-        - /data
+        - /mnt/azure
         name: minio
         image: minio/minio
-              
+        volumeMounts:
+        - mountPath: "/mnt/azure"
+          name: volume      
         ports:
         - containerPort: 9000
         env:
@@ -28,6 +30,11 @@ spec:
           value: V42FCGRVMK24JJ8DHUYG
         - name: MINIO_SECRET_KEY
           value: bKhWxVF3kQoLY9kFmt91l+tDrEoZjqnWXzY9Eza
+      volumes:
+      - name: volume
+        persistentVolumeClaim:
+          claimName: azure-managed-disk      
+        
 ---
 apiVersion: v1
 kind: Service
@@ -39,3 +46,16 @@ spec:
   - port: 9000
   selector:
     app: minio
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: azure-managed-disk
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: default
+  resources:
+    requests:
+      storage: 15Gi
+
