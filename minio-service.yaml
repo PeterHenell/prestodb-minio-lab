@@ -7,13 +7,11 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: minio
-  name: minio
+  name: minio-service
 spec:
+  type: LoadBalancer
   ports:
-  - name: "9000"
-    port: 9000
+  - port: 9000
     targetPort: 9000
   selector:
-    io.kompose.service: minio
-status:
-  loadBalancer: {}
+    app: minio
